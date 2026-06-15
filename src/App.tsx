@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Calculator, Package, FileText, Settings, type LucideIcon } from 'lucide-react'
 import { CalculatorTab } from '@/tabs/CalculatorTab'
 import { BulkPlannerTab } from '@/tabs/BulkPlannerTab'
