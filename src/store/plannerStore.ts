@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { Brand, PlannerConfig, PlannerProduct } from '@/types/planner'
 import { defaultPlannerConfig } from '@/lib/plannerDefaults'
+import { remotePersistStorage } from '@/lib/remoteStorage'
 
 interface PlannerStore {
   config: PlannerConfig
@@ -56,7 +57,13 @@ export const usePlannerStore = create<PlannerStore>()(
       selectProduct: (id) => set({ selected_id: id }),
       resetConfig: () => set({ config: defaultPlannerConfig }),
     }),
-    { name: 'pw-planner' },
+    {
+      name: 'pw-planner',
+      storage: remotePersistStorage<Pick<PlannerStore, 'config' | 'products'>>(),
+      // Only the data is saved. The selected row and brand filter are screen
+      // state: saving them would turn every click into a "change" on the server.
+      partialize: (s) => ({ config: s.config, products: s.products }),
+    },
   ),
 )
 

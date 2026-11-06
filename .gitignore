@@ -26,3 +26,6 @@ dist-tier-bar
 *.njsproj
 *.sln
 *.sw?
+
+# Local dev settings file (npm run dev); real settings live on the server
+.local-data/

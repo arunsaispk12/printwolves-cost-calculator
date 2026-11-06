@@ -8,6 +8,7 @@ import { ProductsTab } from '@/tabs/ProductsTab'
 import { PriceLadderTab } from '@/tabs/PriceLadderTab'
 import { OffersTab } from '@/tabs/OffersTab'
 import { PlannerSettingsTab } from '@/tabs/PlannerSettingsTab'
+import { SaveStatus } from '@/components/SaveStatus'
 
 type Tab = 'calculator' | 'bulk' | 'quote' | 'settings' | 'products' | 'ladder' | 'offers' | 'planner'
 
@@ -34,9 +35,7 @@ export default function App() {
           <span className="font-bold text-white">Print Wolves</span>
           <span className="text-zinc-500 text-sm">/ Cost &amp; Offers Planner</span>
         </div>
-        <span className="text-xs text-emerald-400 bg-emerald-900/30 border border-emerald-700/40 px-2 py-1 rounded">
-          All saved
-        </span>
+        <SaveStatus />
       </header>
 
       {/* Tab Bar */}

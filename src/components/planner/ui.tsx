@@ -130,15 +130,11 @@ export function ProductPicker() {
   )
 }
 
-// A collapsible "how this works" panel. Whether it is open is remembered per screen,
-// so it gets out of the way once someone knows the screen.
-export function Guide({ id, title, children }: { id: string; title: string; children: ReactNode }) {
-  const key = `pw-guide-${id}`
-  const [open, setOpen] = useState(() => localStorage.getItem(key) !== 'closed')
-  const toggle = () => {
-    localStorage.setItem(key, open ? 'closed' : 'open')
-    setOpen(!open)
-  }
+// A collapsible "how this works" panel. It starts open each visit: nothing is kept in
+// the browser, and a screen preference isn't worth a server save (and a version bump).
+export function Guide({ title, children }: { id?: string; title: string; children: ReactNode }) {
+  const [open, setOpen] = useState(true)
+  const toggle = () => setOpen(!open)
   return (
     <div className="border border-sky-900/50 bg-sky-950/20 rounded-lg">
       <button onClick={toggle} className="w-full flex items-center justify-between gap-3 px-4 py-2.5 text-left">

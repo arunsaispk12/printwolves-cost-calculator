@@ -4,6 +4,7 @@ import type { SettingsState, Material, PrinterProfile, LaborRates,
   PricingStrategy, VolumeTier, DeliverySpeed, ComplexityMultiplier,
   ElectricitySettings, PostProcessingOption } from '@/types'
 import { defaultConfig } from '@/lib/defaultConfig'
+import { remotePersistStorage } from '@/lib/remoteStorage'
 
 interface SettingsStore extends SettingsState {
   updateMaterial: (key: string, updates: Partial<Material>) => void
@@ -60,6 +61,6 @@ export const useSettingsStore = create<SettingsStore>()(
 
       resetToDefaults: () => set({ ...defaultConfig }),
     }),
-    { name: 'pw-calculator-settings' }
+    { name: 'pw-calculator-settings', storage: remotePersistStorage<SettingsStore>() }
   )
 )
